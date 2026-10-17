@@ -21,6 +21,10 @@ Open http://localhost:3000. Run `npm run lint`, `npm run typecheck`, `npm test`,
 - **No pretend confirmations:** registration stays visibly unavailable until durable storage is wired in.
 - **Privacy:** never commit guest records, real venue addresses, or credentials to this public repository. Real private event configuration will move to the database before launch. Search-engine noindex is not access control.
 
+## RSVP setup
+
+The RSVP form is ready for a Supabase project but will show a safe configuration message until credentials are configured. Apply `supabase/migrations/0001_create_rsvps.sql` in the Supabase SQL editor, then provide `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` through the deployment environment. Never commit these values.
+
 ## Next slice
 
-Add validated, event-scoped RSVP storage with Supabase, opaque private edit links, and an authenticated organizer dashboard. Deployment and live credentials are not configured. Nothing here is ready to collect real guest data yet.
+Add opaque private edit links and an authenticated organizer dashboard. Deployment and live credentials are not configured.

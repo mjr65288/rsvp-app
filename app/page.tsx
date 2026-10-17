@@ -1,4 +1,5 @@
 import { activeEvent, eventDetails } from '@/lib/event';
+import { RsvpForm } from './rsvp-form';
 
 export default function InvitationPage() {
   const event = activeEvent;
@@ -38,8 +39,7 @@ export default function InvitationPage() {
         <span className="eyebrow">YOUR BACKSTAGE PASS</span>
         <h2 id="rsvp-title">Will you be in our crew?</h2>
         <p>We can&apos;t wait to celebrate together.</p>
-        <div className="notice" role="status">RSVP opens soon. We&apos;re getting the guest list ready—please check back to confirm your spot.</div>
-        <button className="button" disabled>RSVP opening soon</button>
+        <RsvpForm />
         <p className="small-note">No account needed. Just you and your birthday wishes.</p>
       </section>
       <footer>MADE WITH LOVE, FOR AYLIN <span>Unofficial family celebration · No affiliation with the film.</span></footer>
