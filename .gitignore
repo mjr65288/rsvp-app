@@ -13,3 +13,4 @@ Thumbs.db
 out/
 *.tsbuildinfo
 .vercel/
+.env.local
