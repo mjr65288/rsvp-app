@@ -21,6 +21,9 @@ create table if not exists public.rsvps (
 alter table public.events enable row level security;
 alter table public.rsvps enable row level security;
 
+grant select on public.events to anon, authenticated;
+grant insert on public.rsvps to anon, authenticated;
+
 create policy "public can read event identity"
   on public.events for select to anon, authenticated using (true);
 create policy "public can submit rsvps"
