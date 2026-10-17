@@ -1,0 +1,37 @@
+name: PR validation
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled, ready_for_review]
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+jobs:
+  metadata:
+    name: PR metadata
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const { data: pr } = await github.rest.pulls.get({ owner, repo, pull_number: context.issue.number });
+            if (!/^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)\/[a-z0-9._-]+$/.test(pr.head.ref)) {
+              throw new Error('Use a branch such as feat/rsvp-form or chore/repository-workflow.');
+            }
+            if (!/^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9._-]+\))?!?: .+/.test(pr.title)) {
+              throw new Error('Use a Conventional Commit PR title.');
+            }
+            const types = pr.labels.filter(label => label.name.startsWith('type:'));
+            const allowed = ['type:bug', 'type:feature', 'type:docs', 'type:refactor', 'type:chore', 'type:breaking-change'];
+            if (types.length !== 1 || !allowed.includes(types[0].name)) {
+              throw new Error('Apply exactly one supported type:* label.');
+            }
+            const references = [...(pr.body || '').matchAll(/\b(?:closes|fixes|resolves)\s+#(\d+)\b/gi)];
+            if (!references.length) throw new Error('Link an approved issue with Closes #N.');
+            for (const match of references) {
+              const { data: issue } = await github.rest.issues.get({ owner, repo, issue_number: Number(match[1]) });
+              if (issue.pull_request || issue.state !== 'open' || !issue.labels.some(label => label.name === 'status:approved')) {
+                throw new Error(`Issue #${match[1]} must be an open, approved issue, not a PR.`);
+              }
+            }
