@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { activeEvent, eventDetails } from './event';
+
+test('unknown event details are explicit rather than invented', () => {
+  assert.deepEqual(eventDetails(activeEvent), {
+    date: 'Date to be announced', time: 'Time to be announced', venue: 'Venue to be announced',
+  });
+});
+test('event dates use the configured timezone, not the server timezone', () => {
+  const details = eventDetails({ ...activeEvent, startsAt: '2027-01-02T01:00:00Z' });
+  assert.equal(details.date, 'Friday, January 1, 2027');
+  assert.equal(details.time, '5:00 PM');
+});
+test('future events reuse the same formatter without changing Aylin data', () => {
+  assert.equal(eventDetails({ ...activeEvent, id: 'future', venue: 'Family garden' }).venue, 'Family garden');
+  assert.equal(activeEvent.venue, null);
+});
