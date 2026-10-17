@@ -13,4 +13,16 @@ export async function requestAdminMagicLink(formData: FormData) {
   if (error) redirect(`/admin/login?error=${encodeURIComponent('Unable to send sign-in link.')}`);
   redirect('/admin/login?sent=1');
 }
+export async function signInAdminWithPassword(formData: FormData) {
+  const email = String(formData.get('email') ?? '').trim().toLowerCase();
+  const password = String(formData.get('password') ?? '');
+  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  if (!email || !email.includes('@') || !password) redirect('/admin/login?error=Enter your organizer email and password.');
+  if (!adminEmail || email !== adminEmail) redirect('/admin/login?error=This email is not authorized.');
+  const supabase = await createSupabaseServerClient();
+  if (!supabase) redirect('/admin/login?error=Authentication is not configured yet.');
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) redirect('/admin/login?error=The organizer email or password is incorrect.');
+  redirect('/admin');
+}
 export async function signOutAdmin() { const supabase = await createSupabaseServerClient(); await supabase?.auth.signOut(); redirect('/admin/login'); }
