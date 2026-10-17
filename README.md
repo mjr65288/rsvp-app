@@ -28,3 +28,7 @@ The RSVP form is ready for a Supabase project but will show a safe configuration
 ## Next slice
 
 Add opaque private edit links and an authenticated organizer dashboard. Deployment and live credentials are not configured.
+
+## Organizer dashboard setup
+
+Set ADMIN_EMAIL to the organizer's email and NEXT_PUBLIC_SITE_URL to the deployed app URL. Apply supabase/migrations/0002_private_rsvp_reads.sql, then register the organizer in Supabase SQL Editor with insert into public.organizers (email) values (lower('you@example.com')) on conflict do nothing;. Replace the example email before running it. In Supabase Auth, enable Email provider and add the callback URL <site-url>/auth/callback to the redirect allow list.
