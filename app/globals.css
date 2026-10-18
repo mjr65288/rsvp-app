@@ -21,3 +21,8 @@ label{display:grid;gap:8px;text-align:left;font-size:13px;font-weight:600}.rsvp-
 .update-shell{align-content:start;padding-top:24px}.update-card{margin-bottom:24px}.update-card .success{margin-top:24px}.success p{margin:8px 0}
 
 .update-shell{display:grid;align-items:center}.update-card{width:100%}@media(max-width:600px){.update-shell{display:block;padding-top:24px}}
+
+@keyframes invitation-fade-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes invitation-reveal{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:scale(1)}}
+.hero-copy{animation:invitation-fade-up .7s ease-out both}.invitation-card{animation:invitation-reveal .8s .12s ease-out both}.invitation-cta{transition:transform .2s ease,box-shadow .2s ease}.invitation-cta:hover{transform:translateY(-2px);box-shadow:0 8px 18px #23133130}.attendance-card{transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease}.attendance-card.selected{box-shadow:0 6px 16px #6635bc22}
+@media(prefers-reduced-motion:reduce){.hero-copy,.invitation-card{animation:none}.invitation-cta,.attendance-card{transition:none}}
