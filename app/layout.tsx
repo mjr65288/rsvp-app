@@ -15,12 +15,30 @@ export const viewport: Viewport = {
   themeColor: "#faf6ee",
 };
 
+function BackgroundEffects() {
+  return (
+    <div className="background-effects" aria-hidden="true">
+      <span className="effect-glow effect-glow-one" />
+      <span className="effect-glow effect-glow-two" />
+      <span className="effect-glow effect-glow-three" />
+      <span className="effect-sparkle effect-sparkle-one" />
+      <span className="effect-sparkle effect-sparkle-two" />
+      <span className="effect-sparkle effect-sparkle-three" />
+      <span className="effect-sparkle effect-sparkle-four" />
+      <span className="effect-sparkle effect-sparkle-five" />
+    </div>
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <BackgroundEffects />
+        <div className="site-content">{children}</div>
+      </body>
     </html>
   );
 }
