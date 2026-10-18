@@ -3,9 +3,9 @@ import test from 'node:test';
 import { activeEvent, eventDetails } from './event';
 import { validateRsvp } from './rsvp';
 
-test('unknown event details are explicit rather than invented', () => {
+test('active event details match the invitation', () => {
   assert.deepEqual(eventDetails(activeEvent), {
-    date: 'Date to be announced', time: 'Time to be announced', venue: 'Venue to be announced',
+    date: 'Saturday, October 24, 2026', time: '4:00 PM', venue: 'Bakersfield, CA',
   });
 });
 test('event dates use the configured timezone, not the server timezone', () => {
@@ -15,7 +15,7 @@ test('event dates use the configured timezone, not the server timezone', () => {
 });
 test('future events reuse the same formatter without changing Aylin data', () => {
   assert.equal(eventDetails({ ...activeEvent, id: 'future', venue: 'Family garden' }).venue, 'Family garden');
-  assert.equal(activeEvent.venue, null);
+  assert.equal(activeEvent.venue, 'Bakersfield, CA');
 });
 
 test('rsvp validation rejects invalid guest input', () => {
