@@ -20,8 +20,7 @@ export default function InvitationPage() {
           <p className="description">Join us for a {event.theme} birthday celebration!</p>
         </div>
       </section>
-      <section className="invitation-section" id="invitation-section" aria-labelledby="invitation-title">
-        <div className="section-heading"><p className="eyebrow">THE INVITATION</p><h2 id="invitation-title">A birthday made for a superstar.</h2></div>
+      <section className="invitation-section" id="invitation-section" aria-label="Birthday invitation">
         <figure className="invitation-card">
           <Image src="/Neon-K-Pop-Demon-Hunters-Birthday-Invitation.png" alt="Aylin Rodriguez's fifth birthday KPop Demon Hunters invitation" width={1024} height={1536} sizes="(max-width: 760px) calc(100vw - 40px), min(620px, 80vw)" priority />
         </figure>
