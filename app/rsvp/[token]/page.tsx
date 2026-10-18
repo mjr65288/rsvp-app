@@ -1,14 +1,15 @@
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 import { activeEvent } from '@/lib/event';
-import { eventCopy, getLocale } from '@/lib/i18n';
+import { eventCopy, resolveLocale } from '@/lib/i18n';
 import { EditRsvpForm } from './edit-rsvp-form';
 
 type Props = { params: Promise<{ token: string }>; searchParams: Promise<{ lang?: string }> };
 
 export default async function EditRsvpPage({ params, searchParams }: Props) {
   const { token } = await params;
-  const locale = getLocale((await searchParams).lang);
+  const locale = resolveLocale((await searchParams).lang, (await headers()).get('accept-language'));
   const copy = eventCopy(locale);
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_PUBLISHABLE_KEY;

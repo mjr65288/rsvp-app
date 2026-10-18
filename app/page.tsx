@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { headers } from 'next/headers';
 import { activeEvent, eventDetails } from '@/lib/event';
-import { eventCopy, getLocale } from '@/lib/i18n';
+import { eventCopy, resolveLocale } from '@/lib/i18n';
 import { MobileRsvpBar } from './mobile-rsvp-bar';
 import { RsvpForm } from './rsvp-form';
+import { ShareLinks } from './share-links';
 
 type InvitationPageProps = { searchParams: Promise<{ lang?: string }> };
 
 export default async function InvitationPage({ searchParams }: InvitationPageProps) {
   const params = await searchParams;
-  const locale = getLocale(params.lang);
+  const locale = resolveLocale(params.lang, (await headers()).get('accept-language'));
   const copy = eventCopy(locale);
   const event = activeEvent;
   const details = eventDetails(event, locale);
@@ -39,6 +41,7 @@ export default async function InvitationPage({ searchParams }: InvitationPagePro
       <section className="rsvp-card" id="rsvp" aria-labelledby="rsvp-title">
         <span className="eyebrow">{copy.backstage}</span><h2 id="rsvp-title">{copy.rsvpTitle}</h2><p>{copy.rsvpIntro}</p><RsvpForm locale={locale} />
       </section>
+      <ShareLinks locale={locale} />
       <MobileRsvpBar locale={locale} />
       <footer>{copy.footer} <span>{copy.footerNote}</span></footer>
     </main>

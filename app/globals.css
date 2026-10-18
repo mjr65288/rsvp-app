@@ -66,6 +66,7 @@ body> :not(style){position:relative;z-index:2}
 .stats div,.table-wrap{background:rgb(237 229 245 / 78%);backdrop-filter:blur(4px)}
 .nav-actions{display:flex;align-items:center;gap:18px}.language-switcher{display:inline-flex;gap:5px;font-size:11px;letter-spacing:1px}.language-switcher a{color:var(--muted);text-decoration:none}.language-switcher a:hover,.language-switcher a:focus-visible{color:var(--purple)}
 @media(max-width:760px){.nav-actions{gap:10px}.language-switcher{font-size:10px}}
+.share-section{max-width:760px;margin:0 auto 70px;padding:0 28px}.share-section h2{margin:12px 0 8px}.share-intro{color:var(--muted);font-size:14px}.share-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}.share-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid #d6c6e5;border-radius:10px;background:rgb(250 246 238 / 82%)}.share-card strong,.share-card a{display:block}.share-card strong{font-size:14px}.share-card a{margin-top:6px;color:var(--purple);font-size:11px;overflow-wrap:anywhere}.share-card img{width:84px;height:84px;border-radius:4px}@media(max-width:760px){.share-section{padding:0 22px;margin-bottom:44px}.share-grid{grid-template-columns:1fr}.share-card img{width:72px;height:72px}}
 
 /* Full-page effect layer: visible consistently on every route, not only the hero. */
 body::before,body::after{display:none}
