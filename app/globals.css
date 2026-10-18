@@ -64,6 +64,8 @@ body> :not(style){position:relative;z-index:2}
 .admin-card,.rsvp-card{background:rgb(237 229 245 / 82%);backdrop-filter:blur(6px)}
 .success,.rsvp-form input,.rsvp-form textarea{background:rgb(250 246 238 / 86%)}
 .stats div,.table-wrap{background:rgb(237 229 245 / 78%);backdrop-filter:blur(4px)}
+.nav-actions{display:flex;align-items:center;gap:18px}.language-switcher{display:inline-flex;gap:5px;font-size:11px;letter-spacing:1px}.language-switcher a{color:var(--muted);text-decoration:none}.language-switcher a:hover,.language-switcher a:focus-visible{color:var(--purple)}
+@media(max-width:760px){.nav-actions{gap:10px}.language-switcher{font-size:10px}}
 
 /* Full-page effect layer: visible consistently on every route, not only the hero. */
 body::before,body::after{display:none}

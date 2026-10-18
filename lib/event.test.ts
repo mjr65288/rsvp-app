@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { activeEvent, eventDetails } from './event';
 import { validateRsvp } from './rsvp';
+import { getLocale } from './i18n';
 
 test('active event details match the invitation', () => {
   assert.deepEqual(eventDetails(activeEvent), {
@@ -16,6 +17,11 @@ test('event dates use the configured timezone, not the server timezone', () => {
 test('future events reuse the same formatter without changing Aylin data', () => {
   assert.equal(eventDetails({ ...activeEvent, id: 'future', venue: 'Family garden' }).venue, 'Family garden');
   assert.equal(activeEvent.venue, 'Bakersfield, CA');
+});
+test('event dates support Spanish formatting', () => {
+  assert.equal(eventDetails(activeEvent, 'es').date, 'sábado, 24 de octubre de 2026');
+  assert.equal(getLocale('es'), 'es');
+  assert.equal(getLocale('en'), 'en');
 });
 
 test('rsvp validation rejects invalid guest input', () => {
