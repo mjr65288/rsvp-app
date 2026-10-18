@@ -18,7 +18,7 @@ export default async function InvitationPage({ searchParams }: InvitationPagePro
   return (
     <main id="main">
       <nav aria-label={copy.navLabel}>
-        <a className="wordmark" href="#main">AYLIN <span>WORLD TOUR / 05</span></a>
+        <a className="wordmark" href="#main">AYLIN <span>{locale === 'es' ? 'GIRA MUNDIAL / 05' : 'WORLD TOUR / 05'}</span></a>
         <div className="nav-actions"><a className="nav-link" href="#rsvp">{copy.rsvp} <span aria-hidden="true">&gt;</span></a><span className="language-switcher" aria-label="Language"><Link href="/?lang=en">EN</Link><span aria-hidden="true">/</span><Link href="/?lang=es">ES</Link></span></div>
       </nav>
       <section className="hero hero-compact" aria-labelledby="party-title">
