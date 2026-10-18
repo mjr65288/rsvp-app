@@ -7,7 +7,7 @@ export type RsvpInput = {
 };
 
 export type RsvpResult =
-  | { ok: true; message: string; editUrl?: string }
+  | { ok: true; message: string; editUrl?: string; guestName?: string; attendance?: 'yes' | 'no'; adults?: number; children?: number }
   | { ok: false; message: string };
 
 export function validateRsvp(formData: FormData): RsvpInput | string {

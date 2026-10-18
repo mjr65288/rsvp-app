@@ -22,7 +22,7 @@ export async function submitRsvp(_previous: RsvpResult, formData: FormData): Pro
     return { ok: false, message: 'We could not save your RSVP. Please try again.' };
   }
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
-  return { ok: true, message: `Thanks, ${input.guestName}! Your RSVP has been recorded.`, editUrl: `${siteUrl}/rsvp/${editToken}` };
+  return { ok: true, message: input.attendance === 'yes' ? `Thanks, ${input.guestName}! You're on the guest list.` : `Thanks, ${input.guestName}. We've recorded that you can't make it.`, editUrl: `${siteUrl}/rsvp/${editToken}`, guestName: input.guestName, attendance: input.attendance, adults: input.adults, children: input.children };
 }
 
 export async function updateRsvp(editToken: string, _previous: RsvpResult, formData: FormData): Promise<RsvpResult> {
@@ -37,5 +37,5 @@ export async function updateRsvp(editToken: string, _previous: RsvpResult, formD
     console.error('RSVP update failed', error);
     return { ok: false, message: 'We could not update your RSVP. Please try again.' };
   }
-  return { ok: true, message: `Thanks, ${input.guestName}! Your RSVP has been updated.`, editUrl: `/rsvp/${editToken}` };
+  return { ok: true, message: input.attendance === 'yes' ? `Thanks, ${input.guestName}! Your RSVP is updated and you're on the guest list.` : `Thanks, ${input.guestName}. Your response is updated—we've recorded that you can't make it.`, editUrl: `/rsvp/${editToken}`, guestName: input.guestName, attendance: input.attendance, adults: input.adults, children: input.children };
 }
