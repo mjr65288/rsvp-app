@@ -4,6 +4,14 @@ export function getLocale(value: unknown): Locale {
   return String(value ?? '').toLowerCase().startsWith('es') ? 'es' : 'en';
 }
 
+export function getBrowserLocale(acceptLanguage: string | null): Locale {
+  return acceptLanguage?.toLowerCase().split(',').some((value) => value.trim().startsWith('es')) ? 'es' : 'en';
+}
+
+export function resolveLocale(explicit: unknown, acceptLanguage: string | null): Locale {
+  return explicit ? getLocale(explicit) : getBrowserLocale(acceptLanguage);
+}
+
 export function eventCopy(locale: Locale) {
   return locale === 'es' ? {
     navLabel: 'Navegacion de la invitacion', rsvp: 'Confirmar asistencia', heroEyebrow: 'UN DIA. NUESTRA SUPERSTAR FAVORITA.', heroDescription: 'Acompananos a celebrar un cumpleanos inspirado en KPop Demon Hunters!', invitationAlt: 'Invitacion del quinto cumpleanos de Aylin Rodriguez de KPop Demon Hunters', confirm: 'Confirma tu asistencia', plan: 'EL PLAN', planTitle: 'Guarda un espacio para la magia del cumpleanos.', when: 'CUANDO', where: 'DONDE', directions: 'Como llegar', backstage: 'TU PASE VIP', rsvpTitle: 'Seras parte de nuestro equipo?', rsvpIntro: 'Estamos felices de celebrar contigo.', name: 'Tu nombre', attend: 'Asistiras?', yes: 'Si, ahi estare!', yesHelp: 'Cuenten conmigo para la celebracion.', no: 'Lo siento, no podre asistir', noHelp: 'Gracias por avisarnos.', adults: 'Adultos', children: 'Ninos', dietary: 'Necesidades alimentarias', optional: '(opcional)', saving: 'Guardando...', submit: 'Confirmar RSVP', update: 'Actualizar RSVP', change: 'Cambiar mi respuesta', back: 'Volver a la invitacion', footer: 'HECHO CON AMOR, PARA AYLIN', footerNote: 'Celebracion familiar no oficial - Sin afiliacion con la pelicula.', mobileCta: 'Confirma tu asistencia', updateTitle: 'Actualiza tu respuesta', updateIntro: 'Usa este enlace privado para mantener tu RSVP actualizado.'
