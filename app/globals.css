@@ -89,3 +89,5 @@ body>.background-effects{position:fixed;z-index:0}
 .hero-compact .hero-copy{position:relative;z-index:1}
 @media(prefers-reduced-motion:reduce){body::before,body::after{animation:none}}
 
+ .share-action{display:flex;align-items:center;gap:10px;margin-top:8px}.share-action .text-button{padding:0;font-size:12px}.share-action span{color:var(--muted);font-size:11px}
+@media(max-width:760px){.share-card img{display:none}}
