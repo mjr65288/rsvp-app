@@ -35,7 +35,6 @@ export default function InvitationPage() {
         <h2 id="rsvp-title">Will you be in our crew?</h2>
         <p>We can&apos;t wait to celebrate together.</p>
         <RsvpForm />
-        <p className="small-note">No account needed. Just you and your birthday wishes.</p>
       </section>
       <MobileRsvpBar />
       <footer>MADE WITH LOVE, FOR AYLIN <span>Unofficial family celebration - No affiliation with the film.</span></footer>
