@@ -1,52 +1,45 @@
 import Image from 'next/image';
 import { activeEvent, eventDetails } from '@/lib/event';
+import { MobileRsvpBar } from './mobile-rsvp-bar';
 import { RsvpForm } from './rsvp-form';
 
 export default function InvitationPage() {
   const event = activeEvent;
   const details = eventDetails(event);
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address ?? event.venue ?? '')}`;
   return (
     <main id="main">
       <nav aria-label="Invitation navigation">
         <a className="wordmark" href="#main">AYLIN <span>WORLD TOUR / 05</span></a>
-        <a className="nav-link" href="#rsvp">Your invitation <span aria-hidden="true">↗</span></a>
+        <a className="nav-link" href="#rsvp">RSVP <span aria-hidden="true">&gt;</span></a>
       </nav>
-      <section className="hero" aria-labelledby="party-title">
+      <section className="hero hero-compact" aria-labelledby="party-title">
         <div className="hero-copy">
           <p className="eyebrow"><span className="live-dot" /> ONE DAY. OUR FAVORITE SUPERSTAR.</p>
-          <p className="intro">You&apos;re on the guest list.</p>
           <h1 id="party-title">{event.celebrant} is<br />turning <span>{event.age}!</span></h1>
-          <p className="description">Little superstar. Big birthday energy. Join us for a {event.theme} celebration full of music, magic, and your favorite people.</p>
-          <a className="button" href="#rsvp">Let&apos;s celebrate <span aria-hidden="true">↗</span></a>
-          <p className="small-note">Family, friends, and a little main-character energy.</p>
-        </div>
-        <div className="tour-art" role="img" aria-label="A pink and purple concert-inspired birthday pass featuring a large number five">
-          <div className="art-top"><span>THE BIRTHDAY ERA</span><span>VIP ACCESS</span></div>
-          <span className="spark spark-one" aria-hidden="true">✦</span>
-          <span className="spark spark-two" aria-hidden="true">✧</span>
-          <span className="giant-five" aria-hidden="true">5</span>
-          <div className="art-bottom"><strong>AYLIN</strong><span>SMALL STAR.<br />LEGENDARY PARTY.</span></div>
-          <div className="ticket-footer">ADMIT ONE AMAZING CREW <span aria-hidden="true">|||| ||| || |||||</span></div>
+          <p className="description">Join us for a {event.theme} birthday celebration!</p>
         </div>
       </section>
-      <div className="marquee" aria-hidden="true">MUSIC · MAGIC · BIRTHDAY CAKE · MAIN CHARACTER ENERGY · MUSIC · MAGIC · BIRTHDAY CAKE</div>
-      <section className="details" aria-labelledby="details-title">
-        <div><p className="eyebrow">THE PLAN</p><h2 id="details-title">Save a little room<br />for birthday magic.</h2></div>
-        <dl><div><dt>WHEN</dt><dd>{details.date}<small>{details.time}</small></dd></div>
-          <div><dt>WHERE</dt><dd>{details.venue}<small>{event.address ?? 'We will share the details here.'}</small></dd></div>
-          <div><dt>THE VIBE</dt><dd>Come as your superstar self<small>Dancing shoes encouraged. Smiles required.</small></dd></div></dl>
+      <section className="invitation-section" id="invitation-section" aria-labelledby="invitation-title">
+        <div className="section-heading"><p className="eyebrow">THE INVITATION</p><h2 id="invitation-title">A birthday made for a superstar.</h2></div>
+        <figure className="invitation-card">
+          <Image src="/Neon-K-Pop-Demon-Hunters-Birthday-Invitation.png" alt="Aylin Rodriguez's fifth birthday KPop Demon Hunters invitation" width={1024} height={1536} sizes="(max-width: 760px) calc(100vw - 40px), min(620px, 80vw)" priority />
+        </figure>
+        <a className="button invitation-cta" href="#rsvp">Confirm Your Attendance <span aria-hidden="true">&gt;</span></a>
+      </section>
+      <section className="event-info" aria-labelledby="details-title">
+        <div className="section-heading"><p className="eyebrow">THE PLAN</p><h2 id="details-title">Save a little room for birthday magic.</h2></div>
+        <dl><div><dt>WHEN</dt><dd>{details.date}<small>{details.time}</small></dd></div><div><dt>WHERE</dt><dd>{details.venue}<small>{event.address}</small><a className="directions-link" href={directionsUrl} target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">&gt;</span></a></dd></div></dl>
       </section>
       <section className="rsvp-card" id="rsvp" aria-labelledby="rsvp-title">
-        <figure className="invitation-card">
-          <Image src="/Neon-K-Pop-Demon-Hunters-Birthday-Invitation.png" alt="Aylin Rodriguez's fifth birthday KPop Demon Hunters invitation" width={1024} height={1536} sizes="(max-width: 760px) calc(100vw - 80px), 620px" priority />
-        </figure>
         <span className="eyebrow">YOUR BACKSTAGE PASS</span>
         <h2 id="rsvp-title">Will you be in our crew?</h2>
         <p>We can&apos;t wait to celebrate together.</p>
         <RsvpForm />
         <p className="small-note">No account needed. Just you and your birthday wishes.</p>
       </section>
-      <footer>MADE WITH LOVE, FOR AYLIN <span>Unofficial family celebration · No affiliation with the film.</span></footer>
+      <MobileRsvpBar />
+      <footer>MADE WITH LOVE, FOR AYLIN <span>Unofficial family celebration - No affiliation with the film.</span></footer>
     </main>
   );
 }
