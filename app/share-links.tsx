@@ -1,7 +1,8 @@
-import { eventCopy, type Locale } from '@/lib/i18n';
+/* eslint-disable @next/next/no-img-element */
+import { type Locale } from '@/lib/i18n';
 
 export function ShareLinks({ locale }: { locale: Locale }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
   const englishUrl = `${siteUrl}/?lang=en`;
   const spanishUrl = `${siteUrl}/?lang=es`;
   const shareEyebrow = locale === 'es' ? 'COMPARTE LA INVITACION' : 'SHARE THE INVITATION';
@@ -13,8 +14,8 @@ export function ShareLinks({ locale }: { locale: Locale }) {
     <h2 id="share-title">{shareTitle}</h2>
     <p className="share-intro">{shareIntro}</p>
     <div className="share-grid">
-      <article className="share-card"><div><strong>English</strong><a href={englishUrl}>{englishUrl}</a></div>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={qrUrl(englishUrl)} alt="QR code for the English invitation" width="120" height="120" loading="lazy" /></article>
-      <article className="share-card"><div><strong>Español</strong><a href={spanishUrl}>{spanishUrl}</a></div>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={qrUrl(spanishUrl)} alt="Código QR para la invitación en español" width="120" height="120" loading="lazy" /></article>
+      <article className="share-card"><div><strong>English</strong><a href={englishUrl}>{englishUrl}</a></div><img src={qrUrl(englishUrl)} alt="QR code for the English invitation" width="120" height="120" loading="lazy" /></article>
+      <article className="share-card"><div><strong>Español</strong><a href={spanishUrl}>{spanishUrl}</a></div><img src={qrUrl(spanishUrl)} alt="Código QR para la invitación en español" width="120" height="120" loading="lazy" /></article>
     </div>
   </section>;
 }
