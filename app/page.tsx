@@ -26,7 +26,7 @@ export default async function InvitationPage({ searchParams }: InvitationPagePro
       <section className="hero hero-compact" aria-labelledby="party-title">
         <div className="hero-copy">
           <p className="eyebrow"><span className="live-dot" /> {copy.heroEyebrow}</p>
-          <h1 id="party-title">{event.celebrant} is<br />turning <span>{event.age}!</span></h1>
+          <h1 id="party-title">{locale === 'es' ? <>Aylin cumple<br /><span>{`5 a\u00f1os!`}</span></> : <>{event.celebrant} is<br />turning <span>{event.age}!</span></>}</h1>
           <p className="description">{copy.heroDescription}</p>
         </div>
       </section>
