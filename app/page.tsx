@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { activeEvent, eventDetails } from '@/lib/event';
 import { RsvpForm } from './rsvp-form';
 
@@ -36,6 +37,9 @@ export default function InvitationPage() {
           <div><dt>THE VIBE</dt><dd>Come as your superstar self<small>Dancing shoes encouraged. Smiles required.</small></dd></div></dl>
       </section>
       <section className="rsvp-card" id="rsvp" aria-labelledby="rsvp-title">
+        <figure className="invitation-card">
+          <Image src="/Neon-K-Pop-Demon-Hunters-Birthday-Invitation.png" alt="Aylin Rodriguez's fifth birthday KPop Demon Hunters invitation" width={1024} height={1536} sizes="(max-width: 760px) calc(100vw - 80px), 620px" priority />
+        </figure>
         <span className="eyebrow">YOUR BACKSTAGE PASS</span>
         <h2 id="rsvp-title">Will you be in our crew?</h2>
         <p>We can&apos;t wait to celebrate together.</p>

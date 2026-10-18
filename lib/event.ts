@@ -16,10 +16,10 @@ export const activeEvent: PartyEvent = {
   celebrant: 'Aylin',
   age: 5,
   theme: 'KPop Demon Hunters',
-  startsAt: null,
+  startsAt: '2026-10-24T16:00:00-07:00',
   timeZone: 'America/Los_Angeles',
-  venue: null,
-  address: null,
+  venue: 'Bakersfield, CA',
+  address: '5508 Woodard Ridge Drive, Bakersfield, CA 93313',
 };
 
 export function eventDetails(event: PartyEvent) {
