@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { eventCopy, type Locale } from '@/lib/i18n';
 
-export function MobileRsvpBar() {
+export function MobileRsvpBar({ locale }: { locale: Locale }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const invitation = document.getElementById('invitation-section');
@@ -23,5 +24,5 @@ export function MobileRsvpBar() {
     return () => observer.disconnect();
   }, []);
   if (!visible) return null;
-  return <a className="mobile-rsvp-bar" href="#rsvp">Confirm Your Attendance <span aria-hidden="true">&gt;</span></a>;
+  return <a className="mobile-rsvp-bar" href="#rsvp">{eventCopy(locale).mobileCta} <span aria-hidden="true">&gt;</span></a>;
 }

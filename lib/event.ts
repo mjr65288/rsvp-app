@@ -22,13 +22,13 @@ export const activeEvent: PartyEvent = {
   address: '5508 Woodard Ridge Drive, Bakersfield, CA 93313',
 };
 
-export function eventDetails(event: PartyEvent) {
+export function eventDetails(event: PartyEvent, locale = 'en') {
   const date = event.startsAt ? new Date(event.startsAt) : null;
   return {
-    date: date ? new Intl.DateTimeFormat('en-US', {
+    date: date ? new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
       dateStyle: 'full', timeZone: event.timeZone,
     }).format(date) : 'Date to be announced',
-    time: date ? new Intl.DateTimeFormat('en-US', {
+    time: date ? new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
       timeStyle: 'short', timeZone: event.timeZone,
     }).format(date) : 'Time to be announced',
     venue: event.venue ?? 'Venue to be announced',
