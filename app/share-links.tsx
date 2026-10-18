@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { type Locale } from '@/lib/i18n';
+import { ShareAction } from './share-action';
 
 export function ShareLinks({ locale }: { locale: Locale }) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
@@ -14,8 +15,8 @@ export function ShareLinks({ locale }: { locale: Locale }) {
     <h2 id="share-title">{shareTitle}</h2>
     <p className="share-intro">{shareIntro}</p>
     <div className="share-grid">
-      <article className="share-card"><div><strong>English</strong><a href={englishUrl}>{englishUrl}</a></div><img src={qrUrl(englishUrl)} alt="QR code for the English invitation" width="120" height="120" loading="lazy" /></article>
-      <article className="share-card"><div><strong>Español</strong><a href={spanishUrl}>{spanishUrl}</a></div><img src={qrUrl(spanishUrl)} alt="Código QR para la invitación en español" width="120" height="120" loading="lazy" /></article>
+      <article className="share-card"><div><strong>English</strong><a href={englishUrl}>{englishUrl}</a><ShareAction url={englishUrl} locale="en" /></div><img src={qrUrl(englishUrl)} alt="QR code for the English invitation" width="120" height="120" loading="lazy" /></article>
+      <article className="share-card"><div><strong>Español</strong><a href={spanishUrl}>{spanishUrl}</a><ShareAction url={spanishUrl} locale="es" /></div><img src={qrUrl(spanishUrl)} alt="Código QR para la invitación en español" width="120" height="120" loading="lazy" /></article>
     </div>
   </section>;
 }
